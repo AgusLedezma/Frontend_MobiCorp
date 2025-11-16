@@ -2,16 +2,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductoService } from '../../servicios/producto.service'
 import { Chart, ChartConfiguration, ChartType } from 'chart.js';
 import { Subscription, interval } from 'rxjs';
+import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-producto-administrador',
-<<<<<<< HEAD
-=======
-  standalone: true,
-  imports: [],
->>>>>>> d0c8e923ca11661702173403173f3dd142e66031
   templateUrl: './producto-administrador.component.html',
-  styleUrls: ['./producto-administrador.component.css']
+  styleUrls: ['./producto-administrador.component.css'],
+  imports: [CommonModule, CurrencyPipe, DatePipe]
 })
 export class ProductoAdministradorComponent implements OnInit, OnDestroy {
 

@@ -17,14 +17,12 @@
     </div>
   </div>
 
-  <!-- Input para establecer precio -->
   <div class="establecer-precio">
     <label for="precio">Establecer precio: </label>
     <input type="number" id="precio" [(ngModel)]="precioNuevo">
     <button (click)="actualizarPrecio()">Actualizar</button>
   </div>
 
-  <!-- Gráfico de barras prototipado -->
   <div class="grafico-precios">
     <canvas id="graficoPrecio"></canvas>
   </div>
