@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-producto-administrador',
+  standalone: true,
   imports: [],
   templateUrl: './producto-administrador.component.html',
-  styleUrl: './producto-administrador.component.css'
+  styleUrls: ['./producto-administrador.component.css']
 })
 export class ProductoAdministradorComponent {
 
