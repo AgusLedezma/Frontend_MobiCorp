@@ -1,1 +1,72 @@
-<p>login works!</p>
+<div class="login-page">
+	<div class="brand-strip">
+		<div class="brand">
+			<div class="logo-circle">M</div>
+			<div class="brand-text">
+				<div class="brand-name">Mobicorp</div>
+				<div class="brand-tag">Soluciones móviles</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="card">
+			<div class="card-left">
+				<div class="hero-copy">
+					<h2>Bienvenido</h2>
+					<p>Ingresa para administrar tus productos y servicios.</p>
+				</div>
+				<div class="hero-graphic" aria-hidden="true"></div>
+			</div>
+			<div class="card-right">
+				<h3>Iniciar sesión</h3>
+
+				<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+					<div class="form-field" [class.invalid]="f['email'].touched && f['email'].invalid">
+						<label for="email">Correo electrónico</label>
+						   <input id="email" type="email" formControlName="email" placeholder="tucorreo@ejemplo.com" autocomplete="username" autofocus
+							   [attr.aria-invalid]="f['email'].invalid && (f['email'].touched || f['email'].dirty)" />
+						<div class="hint" *ngIf="f['email'].touched && f['email'].hasError('required')">El correo es obligatorio.</div>
+						<div class="hint" *ngIf="f['email'].touched && f['email'].hasError('email')">El formato no es válido.</div>
+					</div>
+
+					<div class="form-field" [class.invalid]="f['contrasena'].touched && f['contrasena'].invalid">
+						<div class="label-row">
+							<label for="pwd">Contraseña</label>
+							<a href="javascript:void(0)" class="forgot-link" (click)="forgotPassword()">¿Olvidaste tu contraseña?</a>
+						</div>
+						<div class="input-affix">
+							<input id="pwd" type="password" formControlName="contrasena" placeholder="••••••••" aria-describedby="pwd-hint"
+								autocomplete="current-password" [attr.aria-invalid]="f['contrasena'].invalid && (f['contrasena'].touched || f['contrasena'].dirty)" />
+							<button class="eye" type="button" (click)="togglePassword()" [attr.aria-pressed]="showPassword" [attr.aria-label]="showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'">
+								<svg *ngIf="!showPassword" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/>
+									<circle cx="12" cy="12" r="3"/>
+								</svg>
+								<svg *ngIf="showPassword" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+									<path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.82 21.82 0 0 1 5.08-6.14M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.78 21.78 0 0 1-2.87 4.11M1 1l22 22"/>
+								</svg>
+							</button>
+						</div>
+						<div class="hint" id="pwd-hint" *ngIf="f['contrasena'].touched && f['contrasena'].hasError('required')">La contraseña es obligatoria.</div>
+						<div class="hint" id="pwd-hint" *ngIf="f['contrasena'].touched && f['contrasena'].hasError('minlength')">Mínimo 6 caracteres.</div>
+					</div>
+
+					<div class="form-row">
+						<label class="checkbox">
+							<input type="checkbox" formControlName="remember" />
+							<span>Recordarme</span>
+						</label>
+					</div>
+
+					<button class="btn btn-primary" type="submit" [disabled]="loading || form.invalid" [attr.aria-busy]="loading">
+						<span class="spinner" *ngIf="loading"></span>
+						<span>Ingresar</span>
+					</button>
+
+					<div class="alert" role="alert" aria-live="assertive" *ngIf="errorMsg" @slideIn>{{ errorMsg }}</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

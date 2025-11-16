@@ -5,6 +5,11 @@ import { Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-producto-administrador',
+<<<<<<< HEAD
+=======
+  standalone: true,
+  imports: [],
+>>>>>>> d0c8e923ca11661702173403173f3dd142e66031
   templateUrl: './producto-administrador.component.html',
   styleUrls: ['./producto-administrador.component.css']
 })

@@ -1,29 +1,39 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+export interface Administrador {
+  id?: number;
+  nombre: string;
+  email: string;
+  contraseña: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdministradorService {
-
-  private backendUrl = "http://localhost:8080/api/admin";
+  private readonly baseUrl = 'http://localhost:8080/api/admin';
 
   constructor(private http: HttpClient) { }
 
-  getAdministradores(): Observable<any> {
-    return this.http.get(`${this.backendUrl}`);
+  crearAdministrador(admin: Administrador): Observable<Administrador> {
+    return this.http.post<Administrador>(`${this.baseUrl}`, admin);
   }
 
-  getAdministradorById(id: number): Observable<any> {
-    return this.http.get(`${this.backendUrl}/${id}`);
+  listar(): Observable<Administrador[]> {
+    return this.http.get<Administrador[]>(`${this.baseUrl}`);
   }
 
-  createAdministrador(administrador: any): Observable<any> {
-    return this.http.post(`${this.backendUrl}/add`, administrador);
+  obtener(id: number): Observable<Administrador> {
+    return this.http.get<Administrador>(`${this.baseUrl}/${id}`);
   }
 
-  deleteAdministrador(id: number): Observable<any> {
-    return this.http.delete(`${this.backendUrl}/${id}`);
+  eliminar(id: number): Observable<string> {
+    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+  }
+
+  login(email: string, contrasena: string): Observable<Administrador> {
+    return this.http.post<Administrador>(`${this.baseUrl}/login`, { email, contrasena });
   }
 }
