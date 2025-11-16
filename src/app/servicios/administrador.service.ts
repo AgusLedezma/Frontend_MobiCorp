@@ -13,7 +13,7 @@ export interface Administrador {
   providedIn: 'root'
 })
 export class AdministradorService {
-  private readonly baseUrl = '/api/admin';
+  private readonly baseUrl = 'http://localhost:8080/api/admin';
 
   constructor(private http: HttpClient) { }
 
@@ -33,7 +33,6 @@ export class AdministradorService {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
 
-  // Login real contra el backend (ASCII en payload: contrasena)
   login(email: string, contrasena: string): Observable<Administrador> {
     return this.http.post<Administrador>(`${this.baseUrl}/login`, { email, contrasena });
   }
